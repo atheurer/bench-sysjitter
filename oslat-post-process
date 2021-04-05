@@ -54,7 +54,8 @@ if ( -e $result_file) {
             }
             my %desc = ('source' => 'oslat', 'type' => $primary_metric, 'class' => 'count');
             my %names = ();
-            log_sample("0", \%desc, \%names, $times{'end'}, int $system_max_latency);
+            my %sample = ('begin' => $times{'begin'}, 'end' => $times{'end'}, 'value' => int $system_max_latency);
+            log_sample("0", \%desc, \%names, \%sample);
         }
     }
     $metric_data_name = finish_samples();
